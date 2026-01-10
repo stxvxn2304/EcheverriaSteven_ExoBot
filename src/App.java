@@ -4,6 +4,7 @@ import esDataAccess.esTipoPersonaDAO;
 import esDataAccess.esRazaDAO;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import esBusinessLogic.esEstadoCivilBL;
 import esBusinessLogic.esRazaBL;
@@ -11,6 +12,7 @@ import esBusinessLogic.esSexoBL;
 import esBusinessLogic.esTipoPersonaBL;
 import esDataAccess.esEstadoCivilDAO;
 import esDataAccess.esDTO.*;
+import esUserInterface.esForm.esMainForm;
 import esUserInterface.esForm.esSplashScreenForm;
 
 public class App {
@@ -87,6 +89,10 @@ public class App {
         // javax.swing.SwingUtilities.invokeLater(() -> {
         //     esSplashScreenForm.esShow();
         // });
+
+        SwingUtilities.invokeLater(() -> {
+            new esMainForm("ExoBot");
+        });
         
     }
 }
