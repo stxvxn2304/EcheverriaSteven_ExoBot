@@ -2,6 +2,8 @@
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/**/*.jar",
+        "c:\\Users\\eche3\\Desktop\\flatlaf-3.jar",
+        "c:\\Users\\eche3\\Desktop\\flatlaf-intellij-themes-3.0.jar"
     ]
 }

@@ -1,0 +1,58 @@
+╭─💀─ SHOW ❱❱ No sape mi errores 
+╰──── LOG  ❱❱ 2026-01-12 12:06:36 | undefined.main() | / by zero
+╭─💀─ SHOW ❱❱ Error al dividir por cero 
+╰──── LOG  ❱❱ 2026-01-13 00:04:02 | undefined.main(...) | / by zero
+╭─💀─ SHOW ❱❱ Error al dividir por cero 
+╰──── LOG  ❱❱ 2026-01-13 00:06:04 | undefined.main(...) | / by zero
+╭─💀─ SHOW ❱❱ Error al dividir por cero 
+╰──── LOG  ❱❱ 2026-01-13 00:07:52 | undefined.main(...) | / by zero
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-15 01:18:38 | HormigaDAO.create | [SQLITE_CONSTRAINT_UNIQUE] A UNIQUE constraint failed (UNIQUE constraint failed: Hormiga.Nombre)
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntCoor 
+╰──── LOG  ❱❱ 2026-01-20 00:14:44 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntFood 
+╰──── LOG  ❱❱ 2026-01-20 00:14:44 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntNest 
+╰──── LOG  ❱❱ 2026-01-20 00:14:44 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntCoor 
+╰──── LOG  ❱❱ 2026-01-20 00:15:28 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntFood 
+╰──── LOG  ❱❱ 2026-01-20 00:15:28 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntNest 
+╰──── LOG  ❱❱ 2026-01-20 00:15:28 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntCoor 
+╰──── LOG  ❱❱ 2026-01-20 00:16:48 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntFood 
+╰──── LOG  ❱❱ 2026-01-20 00:16:48 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntNest 
+╰──── LOG  ❱❱ 2026-01-20 00:16:48 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntCoor 
+╰──── LOG  ❱❱ 2026-01-20 00:18:08 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntFood 
+╰──── LOG  ❱❱ 2026-01-20 00:18:08 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Error en config/app.properties : df.AntNest 
+╰──── LOG  ❱❱ 2026-01-20 00:18:08 | undefined.undefined | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-21 23:06:59 | esSexoDAO.DataHelperSQLiteDAO | No suitable driver found for esStorage\esDatabases\esAntCiberDron.sqlite
+╭─💀─ SHOW ❱❱ Error al instanciar classDAO<T> 
+╰──── LOG  ❱❱ 2026-01-21 23:06:59 | esFactoryBL.FactoryBL(<T>) | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-21 23:08:13 | esSexoDAO.DataHelperSQLiteDAO | No suitable driver found for esStorage\esDatabases\esAntCiberDron.sqlite
+╭─💀─ SHOW ❱❱ Error al instanciar classDAO<T> 
+╰──── LOG  ❱❱ 2026-01-21 23:08:13 | esFactoryBL.FactoryBL(<T>) | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-21 23:08:57 | esSexoDAO.DataHelperSQLiteDAO | No suitable driver found for esStorage\esDatabases\esAntCiberDron.sqlite
+╭─💀─ SHOW ❱❱ Error al instanciar classDAO<T> 
+╰──── LOG  ❱❱ 2026-01-21 23:08:57 | esFactoryBL.FactoryBL(<T>) | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-21 23:09:36 | esSexoDAO.DataHelperSQLiteDAO | No suitable driver found for esStorage\esDatabases\esAntCiberDron.sqlite
+╭─💀─ SHOW ❱❱ Error al instanciar classDAO<T> 
+╰──── LOG  ❱❱ 2026-01-21 23:09:36 | esFactoryBL.FactoryBL(<T>) | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-21 23:12:15 | esSexoDAO.DataHelperSQLiteDAO | No suitable driver found for esStorage\esDatabases\esAntCiberDron.sqlite
+╭─💀─ SHOW ❱❱ Error al instanciar classDAO<T> 
+╰──── LOG  ❱❱ 2026-01-21 23:12:15 | esFactoryBL.FactoryBL(<T>) | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-21 23:14:13 | esSexoDAO.DataHelperSQLiteDAO | No suitable driver found for esStorage\esDatabases\esAntCiberDron.sqlite
+╭─💀─ SHOW ❱❱ Error al instanciar classDAO<T> 
+╰──── LOG  ❱❱ 2026-01-21 23:14:13 | esFactoryBL.FactoryBL(<T>) | Ups! Error inesperado. Por favor, contacte al administrador del sistema.

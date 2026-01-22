@@ -1,20 +1,26 @@
-//  ©──❰ 💀 © 2K25 PatMic ❱──© 
-
+//  © 2K26 ❱──💀──❰ pat_mic ? code is life : life is code
 package esDataAccess.esHelpers;
 
 import java.sql.*;
 import java.util.List;
+
+import esDataAccess.esInterfaces.esIDAO;
+
 import java.util.ArrayList;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public abstract class DataHelperSQLiteDAO<T> implements IDAO<T> {
+import esInfrastructure.esAppConfig;
+import esInfrastructure.esAppException;
+
+public class DataHelperSQLiteDAO <T> implements esIDAO<T> {
     protected final Class<T>DTOClass;
     protected final String  tableName;
     protected final String  tablePK;
 
-    private static final String DBPath = "jdbc:sqlite:esDataBase//esEXOBOT.sqlite";
+    private static final String DBPath = esAppConfig.getDATABASE(); 
     private static Connection conn = null;
 
     protected static synchronized Connection openConnection() throws SQLException {
@@ -35,21 +41,25 @@ public abstract class DataHelperSQLiteDAO<T> implements IDAO<T> {
     }
 
     /**
-     * 
-     * @param DTOClass  : Nombre de la clase DTO       
+     * Construye la relacion entre la clase DTO y la tabla de la base de datos
+     * @param dtoClass  : Nombre de la clase DTO
      * @param tableName : Nombre de la tabla
      * @param tablePK   : Nombre del PK de la tabla
-     * @throws Exception: Error que no se puede asociar la clase a tabla
+     * @throws esAppException: Error al asociar la clase con la tabla
      */
-    public DataHelperSQLiteDAO(Class<T> DTOClass, String tableName, String tablePK) throws Exception {
-        openConnection();
-        this.DTOClass  = DTOClass;
+    public DataHelperSQLiteDAO(Class<T> dtoClass, String tableName, String tablePK) throws esAppException {
+        try {
+            openConnection();
+        } catch (SQLException e) {
+            throw new esAppException(null, e, getClass(), "DataHelperSQLiteDAO");
+        }
+        this.DTOClass  = dtoClass;
         this.tableName = tableName;
         this.tablePK   = tablePK;
     }
 
     @Override
-    public boolean create(T entity) throws Exception {
+    public boolean create(T entity) throws esAppException {
         Field[] fields = DTOClass.getDeclaredFields();
         StringBuilder columns = new StringBuilder();
         StringBuilder placeholders = new StringBuilder();
@@ -84,66 +94,86 @@ public abstract class DataHelperSQLiteDAO<T> implements IDAO<T> {
                         stmt.setObject(index++, field.get(entity));
             }
             return (stmt.executeUpdate() > 0);
-        } 
+        } catch (SQLException | IllegalAccessException e) {
+            throw new esAppException(null, e, getClass(), "create");
+        }
     }
 
     @Override
-    public boolean update(T entity) throws Exception {
-        Field[] fields = DTOClass.getDeclaredFields();
-        StringBuilder updates = new StringBuilder();
-        Object pkValue = null;
+    public boolean update(T entity) throws esAppException {
+        try {
+            Field[] fields = DTOClass.getDeclaredFields();
+            StringBuilder updates = new StringBuilder();
+            Object pkValue = null;
 
-        for (Field field : fields) {
-            field.setAccessible(true);
-            String name = field.getName();
-            if (!name.equalsIgnoreCase(tablePK)) {
-                updates.append(name).append(" = ?,");
-            } else {
-                pkValue = field.get(entity);
-            }
-        }
-
-        updates.append("FechaModifica = ?");
-
-        String sql = String.format("UPDATE %s SET %s WHERE %s = ?", tableName, updates, tablePK);
-
-        try (PreparedStatement stmt = openConnection().prepareStatement(sql)) {
-            int index = 1;
             for (Field field : fields) {
-                if (!field.getName().equalsIgnoreCase(tablePK)) {
-                    stmt.setObject(index++, field.get(entity));
+                String name = field.getName();
+
+                if (!name.equalsIgnoreCase(tablePK)) {
+                    updates.append(name).append(" = ?, ");
+                } else {
+                    if (!field.canAccess(entity)) {
+                        field.setAccessible(true);
+                    }
+                    pkValue = field.get(entity);
                 }
             }
-            stmt.setString(index++, getDataTimeNow());
-            stmt.setObject(index, pkValue);
-            return stmt.executeUpdate() > 0;
+
+            updates.append("FechaModifica = ?"); // campo técnico de auditoría
+
+            String sql = String.format("UPDATE %s SET %s WHERE %s = ?", tableName, updates, tablePK);
+
+            try (PreparedStatement stmt = openConnection().prepareStatement(sql)) {
+                int index = 1;
+                for (Field field : fields) {
+                    String name = field.getName();
+                    if (!name.equalsIgnoreCase(tablePK)) {
+                        if (!field.canAccess(entity)) {
+                            field.setAccessible(true);
+                        }
+                        stmt.setObject(index++, field.get(entity));
+                    }
+                }
+
+                stmt.setString(index++, getDataTimeNow()); // FechaModifica
+                stmt.setObject(index, pkValue); // WHERE PK = ?
+
+                return stmt.executeUpdate() > 0;
+            }
+
+        }   catch (SQLException | IllegalAccessException e) {
+            throw new esAppException(null, e, getClass(), "update");
         }
     }
 
     @Override
-    public boolean delete(int id) throws Exception {
+    public boolean delete(Integer id) throws esAppException {
         String sql = String.format("UPDATE %s SET Estado = ?, FechaModifica = ? WHERE %s = ?", tableName, tablePK);
         try (PreparedStatement stmt = openConnection().prepareStatement(sql)) {
             stmt.setString(1, "X");
             stmt.setString(2, getDataTimeNow());
             stmt.setInt   (3, id);
             return stmt.executeUpdate() > 0;
+        }catch (SQLException e) {
+            throw new esAppException(null, e, getClass(), "delete");
         }
     }
 
     @Override
-    public T readBy(Integer id) throws Exception {
+    public T readBy(Integer id) throws esAppException {
         String sql = String.format("SELECT * FROM %s WHERE %s = ? AND Estado = 'A'", tableName, tablePK);
         try (PreparedStatement stmt = openConnection().prepareStatement(sql)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 return rs.next() ? mapResultSetToEntity(rs) : null;
             }
+        }catch (SQLException e) {
+            throw new esAppException(null, e, getClass(), "readBy");
         }
     }
 
     @Override
-    public List<T> readAll() throws Exception {
+    public List<T> readAll() throws esAppException {
         List<T> list = new ArrayList<>();
         String sql = String.format("SELECT * FROM %s WHERE Estado = 'A'", tableName);
         try (PreparedStatement stmt = openConnection().prepareStatement(sql);
@@ -151,32 +181,61 @@ public abstract class DataHelperSQLiteDAO<T> implements IDAO<T> {
             while (rs.next()) {
                 list.add(mapResultSetToEntity(rs));
             }
+        } catch (SQLException e) {
+            throw new esAppException(null, e, getClass(), "readAll");
         }
         return list;
     }
 
     @Override
-    public Integer getRowCount() throws Exception {
+    public Integer getMaxReg(String tableCelName) throws esAppException {
+        String sql = String.format("SELECT MAX(%s) FROM %s WHERE Estado = 'A'", tableCelName, tableName);
+        try (PreparedStatement stmt = openConnection().prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            return rs.next() ? rs.getInt(1) : 0;
+        } catch (SQLException e) {
+            throw new esAppException(null, e, getClass(), "getMaxReg(...)");
+        }
+    }
+    @Override
+    public Integer getMinReg(String tableCelName) throws esAppException {
+        String sql = String.format("SELECT MIN(%s) FROM %s WHERE Estado = 'A'", tableCelName, tableName);
+        try (PreparedStatement stmt = openConnection().prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            return rs.next() ? rs.getInt(1) : 0;
+        } catch (SQLException e) {
+            throw new esAppException(null, e, getClass(), "getMinReg(...)");
+        }
+    }
+    @Override
+    public Integer getCountReg() throws esAppException {
         String sql = String.format("SELECT COUNT(*) FROM %s WHERE Estado = 'A'", tableName);
         try (PreparedStatement stmt = openConnection().prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             return rs.next() ? rs.getInt(1) : 0;
+        } catch (SQLException e) {
+            throw new esAppException(null, e, getClass(), "getCountReg(...)");
         }
     }
 
-    protected T mapResultSetToEntity(ResultSet rs) throws Exception {
-        T instance = DTOClass.getDeclaredConstructor().newInstance();
-        ResultSetMetaData meta = rs.getMetaData();
+    protected T mapResultSetToEntity(ResultSet rs) throws esAppException {
+        try {
+            T instance = DTOClass.getDeclaredConstructor().newInstance();
+            ResultSetMetaData meta = rs.getMetaData();
 
-        for (int i = 1; i <= meta.getColumnCount(); i++) {
-            String col = meta.getColumnName(i);
-            Object val = rs.getObject(i);
-            try {
+            for (int i = 1; i <= meta.getColumnCount(); i++) {
+                String col = meta.getColumnLabel(i); // usa alias si existen
+                Object val = rs.getObject(i);
+
                 Field field = DTOClass.getDeclaredField(col);
-                field.setAccessible(true);
+                if (!field.canAccess(instance)) {
+                    field.setAccessible(true);
+                }
                 field.set(instance, val);
-            } catch (NoSuchFieldException ignored) {}
+            }
+            return instance;
+        } catch (SQLException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchFieldException e) {
+            throw new esAppException(null, e, getClass(), "mapResultSetToEntity");
         }
-        return instance;
     }
 }
