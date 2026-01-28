@@ -1,178 +1,213 @@
 -- © 2K26 ❱──💀──❰ pat_mic ? code is life : life is code
--- database: storage\Databases\antCiberDron.sqlite
-DROP TABLE IF EXISTS AntCiberDron;
-DROP TABLE IF EXISTS Hormiga;
-DROP TABLE IF EXISTS Sexo;
-DROP TABLE IF EXISTS Estado;
-DROP TABLE IF EXISTS HormigaTipo;
-DROP TABLE IF EXISTS AlimentoTipo; 
-DROP TABLE IF EXISTS Entomologo;
+-- database: esStorage\esDatabases\esAntCiberDron.sqlite
+DROP TABLE IF EXISTS esHormigaAntCiberDron;
+DROP TABLE IF EXISTS esHormigaAlimento;
+DROP TABLE IF EXISTS esAlimento;
+DROP TABLE IF EXISTS esAntCiberDron;
+DROP TABLE IF EXISTS esHormiga;
+DROP TABLE IF EXISTS esSexo;
+DROP TABLE IF EXISTS esEstado;
+DROP TABLE IF EXISTS esHormigaTipo;
+DROP TABLE IF EXISTS esAlimentoTipo; 
+DROP TABLE IF EXISTS esEntomologo;
 
-CREATE TABLE Entomologo(
-     IdEntomologo   INTEGER PRIMARY KEY AUTOINCREMENT
-    ,Usuario        VARCHAR(15) NOT NULL UNIQUE
-    ,Clave          VARCHAR(15) NOT NULL
+CREATE TABLE esEntomologo(
+     esIdEntomologo   INTEGER PRIMARY KEY AUTOINCREMENT
+    ,esUsuario        VARCHAR(15) NOT NULL UNIQUE
+    ,esClave          VARCHAR(15) NOT NULL
     ,Estado         VARCHAR(1)  NOT NULL DEFAULT 'A'
     ,FechaCreacion  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
     ,FechaModifica  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
 );
+ 
+CREATE TABLE esAlimentoTipo(
+     esIdAlimentoTipo INTEGER PRIMARY KEY AUTOINCREMENT
+    ,esNombre         VARCHAR(15)  NOT NULL UNIQUE
+    ,esDescripcion    VARCHAR(100) NULL
+    ,Estado         VARCHAR(1)  NOT NULL DEFAULT 'A'
+    ,FechaCreacion  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+    ,FechaModifica  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+);
+CREATE TABLE esHormigaTipo (
+     esIdHormigaTipo  INTEGER PRIMARY KEY AUTOINCREMENT
+    ,esNombre         VARCHAR(15)  NOT NULL UNIQUE
+    ,esDescripcion    VARCHAR(100) NULL
+    ,Estado         VARCHAR(1)  NOT NULL DEFAULT 'A'
+    ,FechaCreacion  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+    ,FechaModifica  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+);
+CREATE TABLE esEstado (
+     esIdEstado       INTEGER PRIMARY KEY AUTOINCREMENT
+    ,esNombre         VARCHAR(15)  NOT NULL UNIQUE
+    ,esDescripcion    VARCHAR(100) NULL
+    ,Estado         VARCHAR(1)  NOT NULL DEFAULT 'A'
+    ,FechaCreacion  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+    ,FechaModifica  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+);
+CREATE TABLE esSexo (
+     esIdSexo         INTEGER PRIMARY KEY AUTOINCREMENT
+    ,esNombre         VARCHAR(15)  NOT NULL UNIQUE
+    ,esDescripcion    VARCHAR(100) NULL
+    ,Estado         VARCHAR(1)  NOT NULL DEFAULT 'A'
+    ,FechaCreacion  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+    ,FechaModifica  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+);
+CREATE TABLE esHormiga (
+     esIdHormiga      INTEGER PRIMARY KEY AUTOINCREMENT
+    ,esIdHormigaTipo  INTEGER NOT NULL REFERENCES esHormigaTipo (esIdHormigaTipo)
+    ,esIdSexo         INTEGER NOT NULL REFERENCES esSexo        (esIdSexo)
+    ,esIdEstado       INTEGER NOT NULL REFERENCES esEstado      (esIdEstado)
+    ,esNombre         VARCHAR(20) NOT NULL
+    ,esDescripcion    VARCHAR(20) NULL
 
-CREATE TABLE AlimentoTipo(
-     IdAlimentoTipo INTEGER PRIMARY KEY AUTOINCREMENT
-    ,Nombre         VARCHAR(15)  NOT NULL UNIQUE
-    ,Descripcion    VARCHAR(100) NULL
     ,Estado         VARCHAR(1)  NOT NULL DEFAULT 'A'
     ,FechaCreacion  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
     ,FechaModifica  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
 );
-CREATE TABLE HormigaTipo (
-     IdHormigaTipo  INTEGER PRIMARY KEY AUTOINCREMENT
-    ,Nombre         VARCHAR(15)  NOT NULL UNIQUE
-    ,Descripcion    VARCHAR(100) NULL
-    ,Estado         VARCHAR(1)  NOT NULL DEFAULT 'A'
-    ,FechaCreacion  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
-    ,FechaModifica  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
-);
-CREATE TABLE Estado (
-     IdEstado       INTEGER PRIMARY KEY AUTOINCREMENT
-    ,Nombre         VARCHAR(15)  NOT NULL UNIQUE
-    ,Descripcion    VARCHAR(100) NULL
-    ,Estado         VARCHAR(1)  NOT NULL DEFAULT 'A'
-    ,FechaCreacion  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
-    ,FechaModifica  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
-);
-CREATE TABLE Sexo (
-     IdSexo         INTEGER PRIMARY KEY AUTOINCREMENT
-    ,Nombre         VARCHAR(15)  NOT NULL UNIQUE
-    ,Descripcion    VARCHAR(100) NULL
-    ,Estado         VARCHAR(1)  NOT NULL DEFAULT 'A'
-    ,FechaCreacion  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
-    ,FechaModifica  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
-);
-CREATE TABLE Hormiga (
-     IdHormiga      INTEGER PRIMARY KEY AUTOINCREMENT
-    ,IdHormigaTipo  INTEGER NOT NULL REFERENCES HormigaTipo (IdHormigaTipo)
-    ,IdSexo         INTEGER NOT NULL REFERENCES Sexo        (IdSexo)
-    ,IdEstado       INTEGER NOT NULL REFERENCES Estado      (IdEstado)
-    ,Nombre         VARCHAR(20) NOT NULL
-    ,Descripcion    VARCHAR(20) NULL
-
-    ,Estado         VARCHAR(1)  NOT NULL DEFAULT 'A'
-    ,FechaCreacion  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
-    ,FechaModifica  DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
-);
-CREATE TABLE AntCiberDron (
-     IdAntCiberDron     INTEGER PRIMARY KEY AUTOINCREMENT
-    ,Serie              VARCHAR(10) NOT NULL  UNIQUE
+CREATE TABLE esAntCiberDron (
+     esIdAntCiberDron   INTEGER PRIMARY KEY AUTOINCREMENT
+    ,esSerie            VARCHAR(10) NOT NULL  UNIQUE
     ,Estado             VARCHAR(1)  NOT NULL DEFAULT 'A'
     ,FechaCreacion      DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
     ,FechaModifica      DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
 );
+CREATE TABLE esAlimento     (
+    esIdAlimento        INTEGER PRIMARY KEY AUTOINCREMENT
+    ,esIdAlimentoTipo   INTEGER NOT NULL REFERENCES esAlimentoTipo  (esIdAlimentoTipo)
+    ,esNombre           VARCHAR(20) NOT NULL
+    ,esDescripcion      VARCHAR(20) NULL
 
--- Insert initial data into Sexo table
-INSERT INTO Sexo 
- (Nombre, Descripcion)  VALUES 
- ('Macho'  ,' masculino')
-,('Hembra' ,' femenina') 
-,('Hibrido',' Hibrido')
-,('Asexual',' Asexual');
+    ,Estado             VARCHAR(1)  NOT NULL DEFAULT 'A'
+    ,FechaCreacion      DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+    ,FechaModifica      DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))           
+);
+CREATE TABLE esHormigaAlimento  (
+    esIdHormigaAlimento         INTEGER PRIMARY KEY AUTOINCREMENT
+    ,esIdHormiga                INTEGER NOT NULL REFERENCES esHormiga (esIdHormiga)
+    ,esIdAlimento               INTEGER NOT NULL REFERENCES esAlimento (esIdAlimento)
+    ,esDescripcion              VARCHAR(20) NULL
 
-INSERT INTO AlimentoTipo
- (Nombre, Descripcion)  VALUES
- ('Carnivoro'   ,'Azucar')
-,('Herbívoro' ,'Proteina')
-,('Omnívoro'  ,'Lipidico')
-,('Nectarivoro','Vitaminico');
+    ,Estado                     VARCHAR(1)  NOT NULL DEFAULT 'A'
+    ,FechaCreacion              DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+    ,FechaModifica              DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))           
+);
+CREATE TABLE esHormigaAntCiberDron (
+    esIdHormigaAntCiberDron     INTEGER PRIMARY KEY AUTOINCREMENT
+    ,esIdHormiga                INTEGER NOT NULL REFERENCES esHormiga (esIdHormiga)
+    ,esIdAntCiberDron           INTEGER NOT NULL REFERENCES esAntCiberDron (esIdAntCiberDron)
+    ,esDescripcion              VARCHAR(20) NULL
 
-INSERT INTO HormigaTipo
- (Nombre, Descripcion)  VALUES 
- ('Larva'     ,' en etapa de larva')
-,('Soldado'   ,' encargada de la defensa')
-,('Rastreadora',' encargada de buscar alimento')
-,('Reina'     ,' encargada de la reproducción')
-,('Zángano'   ,' macho para reproducción');
+    ,Estado                     VARCHAR(1)  NOT NULL DEFAULT 'A'
+    ,FechaCreacion              DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))
+    ,FechaModifica              DATETIME NOT NULL  DEFAULT (datetime('now','localtime'))           
+);
 
-INSERT INTO Estado
- (Nombre, Descripcion)  VALUES 
- ('Vive' ,' está viva'),
- ('Muere',' ha muerto'),
- ('Finge',' su muerte');
+INSERT INTO esSexo 
+ (esNombre, esDescripcion)  VALUES 
+ ('Macho'  ,'masculino')
+,('Hembra' ,'femenina') 
+,('Hibrido','Hibrido')
+,('Asexual','Asexual');
 
-INSERT INTO AntCiberDron
-(Serie)     VALUES 
+INSERT INTO esAlimentoTipo
+ (esNombre,     esDescripcion)  VALUES
+ ('Nectarívoro' ,'Comida para HLarva')
+,('Herbívoro'   ,'Comida para HObrera');
+
+INSERT INTO esHormigaTipo
+ (esNombre,     esDescripcion)  VALUES 
+ ('Larva'       ,'en etapa de larva')
+,('Obrera'      ,'encargada de trabajar');
+
+INSERT INTO esEstado
+ (esNombre, esDescripcion)  VALUES 
+ ('Vive' ,'está viva'),
+ ('Muere','ha muerto');
+
+INSERT INTO esAntCiberDron
+(esSerie)     VALUES 
 ('S001'),
 ('S002'),
 ('S003'),
 ('S004');
-    
-INSERT INTO Hormiga
-(IdHormigaTipo, IdSexo, IdEstado, Nombre, Descripcion) values 
-(1, 2, 1, 'Hormiga1', 'Primera hormiga'),
-(2, 1, 1, 'Hormiga2', 'Segunda hormiga'),
-(3, 2, 1, 'Hormiga3', 'Tercera hormiga'),
-(4, 1, 1, 'Hormiga4', 'Cuarta hormiga');
-
-select * from Sexo;
-select * from HormigaTipo;
-select * from Estado;
-select * from AlimentoTipo;
-SELECT * FROM Hormiga;
 
 
-DROP VIEW IF EXISTS vwHormiga;
+SELECT * FROM esSexo;
+SELECT * FROM esHormigaTipo;
+SELECT * FROM esEstado;
+SELECT * FROM esAlimentoTipo;
+SELECT * FROM esEstado;
 
-CREATE VIEW vwHormiga AS
+DROP VIEW IF EXISTS vwesHormiga;
+
+CREATE VIEW vwesHormiga AS
 SELECT 
-     H.IdHormiga
-    ,HT.Nombre AS Tipo
-    ,S.Nombre  AS Sexo
-    ,E.Nombre  AS EstadoHormiga
-    ,H.Nombre  AS Nombre
-    ,H.Descripcion
+     H.esIdHormiga
+    ,HT.esNombre AS esTipo
+    ,S.esNombre  AS esSexo
+    ,E.esNombre  AS esEstadoHormiga
+    ,H.esNombre  AS esNombre
+    ,H.esDescripcion
     ,H.Estado
     ,H.FechaCreacion
     ,H.FechaModifica
-FROM Hormiga H
-JOIN HormigaTipo    HT ON H.IdHormigaTipo = HT.IdHormigaTipo
-JOIN Sexo           S  ON H.IdSexo        = S.IdSexo
-JOIN Estado         E  ON H.IdEstado      = E.IdEstado
+FROM esHormiga H
+JOIN esHormigaTipo    HT ON H.esIdHormigaTipo = HT.esIdHormigaTipo
+JOIN esSexo           S  ON H.esIdSexo        = S.esIdSexo
+JOIN esEstado         E  ON H.esIdEstado      = E.esIdEstado
 WHERE H.Estado = 'A';
 
-SELECT * FROM vwHormiga;
-SELECT * FROM Hormiga;
+SELECT * FROM vwesHormiga;
 
-SELECT IdHormiga
-,Tipo
-,Sexo
-,EstadoHormiga
-,Nombre
-,Descripcion
-,Estado
-,FechaCreacion
-,FechaModifica  
-FROM vwHormiga;
+--TESTING:
 
 
-SELECT * FROM Hormiga;
+-- SELECT esIdHormiga
+-- ,esTipo
+-- ,esSexo
+-- ,esEstadoHormiga
+-- ,esNombre
+-- ,esDescripcion
+-- ,Estado
+-- ,FechaCreacion
+-- ,FechaModifica  
+-- FROM vwesHormiga;
 
 
+-- SELECT * FROM esHormiga;
 
-UPDATE Estado   SET Nombre = 'VIVA'
-WHERE IdEstado = 1;
+UPDATE esEstado SET esNombre = 'VIVA'
+WHERE esIdEstado = 1;
 
-UPDATE Estado   SET Nombre = 'MUERTA'
-WHERE IdEstado = 2;
+UPDATE esEstado   SET esNombre = 'MUERTA'
+WHERE esIdEstado = 2;
 
-UPDATE Estado   SET Estado = 'X'
-WHERE IdEstado = 3;
+SELECT * FROM esEstado;
 
-select * from Entomologo;
+SELECT * FROM esEntomologo;
 
-SELECT  IdEntomologo  
-,Usuario       
-,Clave         
+SELECT esIdEntomologo  
+,esUsuario       
+,esClave         
 ,Estado        
 ,FechaCreacion 
 ,FechaModifica  
-FROM Entomologo 
-WHERE Usuario = 'patmic' AND Clave = '1234';
+FROM esEntomologo 
+WHERE esUsuario = 'patmic' AND esClave = '1234';
+
+-- INSERT INTO esAlimento 
+-- (esIdAlimentoTipo,  esNombre,        esDescripcion) VALUES 
+-- (1,                 'esNectarivoro' ,'Comida para HLarva'),
+-- (2,                 'esHerbivoro'   ,'Comida para HObrera');
+
+-- INSERT INTO esHormigaAlimento 
+-- (esIdHormiga, esIdAlimento) VALUES 
+-- (1, 1),
+-- (2, 2),
+-- (3, 3);
+
+-- INSERT INTO esHormigaAntCiberDron 
+-- (esIdHormiga, esIdAntCiberDron) VALUES 
+-- (1, 1),
+-- (2, 2),
+-- (3, 3);

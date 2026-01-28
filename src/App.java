@@ -1,17 +1,23 @@
 //  © 2K26 ❱──💀──❰ pat_mic ? code is life : life is code
 
-import esApp.esDesktopApp.esForms.esAppSplashScreen;
-import esApp.esDesktopApp.esForms.esAppStart;
+import esApp.esConsoleApp.esSistemaRuso;
+import esApp.esUserInterface.esForms.esAppSplashScreen;
+import esApp.esUserInterface.esForms.esAppStart;
+import esBusinessComponent.esEntities.esEntomologoGenestita;
 
 public class App {
     public static void main(String[] args)   {
 
         //tetsing: BL
         try {  
-
             new esAppSplashScreen();
             new esAppStart("ants");
-                 
+            // esSistemaRuso sistemaRuso = new esSistemaRuso();
+            // esEntomologoGenestita entomologo = new esEntomologoGenestita("steven", "1234");
+            // sistemaRuso.crudEntomologo();
+            // sistemaRuso.saveHormigas(entomologo);
+            // sistemaRuso.saveAlimento(entomologo);
+        
             // SistemaRuso sistemaRuso = new SistemaRuso();
             // EntomologoGenestita entomologo = new EntomologoGenestita("patmic", "1234");
 
@@ -37,7 +43,7 @@ public class App {
             //     System.out.println( dto.toString() );
             // }
 
-        } catch (Exception _) {  }
+        } catch (Exception e) {  }
 
 
 

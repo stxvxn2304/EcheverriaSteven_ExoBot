@@ -56,3 +56,43 @@
 ╰──── LOG  ❱❱ 2026-01-21 23:14:13 | esSexoDAO.DataHelperSQLiteDAO | No suitable driver found for esStorage\esDatabases\esAntCiberDron.sqlite
 ╭─💀─ SHOW ❱❱ Error al instanciar classDAO<T> 
 ╰──── LOG  ❱❱ 2026-01-21 23:14:13 | esFactoryBL.FactoryBL(<T>) | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:18:57 | esHormigaTipoDAO.mapResultSetToEntity | esIdHormigaTipo
+╭─💀─ SHOW ❱❱ Error leyendo el archivo de datos de hormigas:  
+╰──── LOG  ❱❱ 2026-01-27 23:18:57 | esEntomologoGenestita.etlAntNest() | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:18:57 | esAlimentoTipoDAO.mapResultSetToEntity | esIdAlimentoTipo
+╭─💀─ SHOW ❱❱ Error leyendo el archivo de datos de hormigas:  
+╰──── LOG  ❱❱ 2026-01-27 23:18:57 | esEntomologoGenestita.etlAntNest() | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:20:57 | esEntomologoDAO.create | [SQLITE_CONSTRAINT_UNIQUE] A UNIQUE constraint failed (UNIQUE constraint failed: esEntomologo.esUsuario)
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:21:18 | esEntomologoDAO.create | [SQLITE_CONSTRAINT_UNIQUE] A UNIQUE constraint failed (UNIQUE constraint failed: esEntomologo.esUsuario)
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:22:17 | esHormigaTipoDAO.mapResultSetToEntity | esIdHormigaTipo
+╭─💀─ SHOW ❱❱ Error leyendo el archivo de datos de hormigas:  
+╰──── LOG  ❱❱ 2026-01-27 23:22:17 | esEntomologoGenestita.etlAntNest() | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:22:17 | esAlimentoTipoDAO.mapResultSetToEntity | esIdAlimentoTipo
+╭─💀─ SHOW ❱❱ Error leyendo el archivo de datos de hormigas:  
+╰──── LOG  ❱❱ 2026-01-27 23:22:17 | esEntomologoGenestita.etlAntNest() | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:28:25 | esHormigaTipoDAO.mapResultSetToEntity | esIdHormigaTipo
+╭─💀─ SHOW ❱❱ Error leyendo el archivo de datos de hormigas:  
+╰──── LOG  ❱❱ 2026-01-27 23:28:25 | esEntomologoGenestita.etlAntNest() | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:28:25 | esAlimentoTipoDAO.mapResultSetToEntity | esIdAlimentoTipo
+╭─💀─ SHOW ❱❱ Error leyendo el archivo de datos de hormigas:  
+╰──── LOG  ❱❱ 2026-01-27 23:28:25 | esEntomologoGenestita.etlAntNest() | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:28:57 | esHormigaTipoDAO.mapResultSetToEntity | esIdHormigaTipo
+╭─💀─ SHOW ❱❱ Error leyendo el archivo de datos de hormigas:  
+╰──── LOG  ❱❱ 2026-01-27 23:28:57 | esEntomologoGenestita.etlAntNest() | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:28:57 | esAlimentoTipoDAO.mapResultSetToEntity | esIdAlimentoTipo
+╭─💀─ SHOW ❱❱ Error leyendo el archivo de datos de hormigas:  
+╰──── LOG  ❱❱ 2026-01-27 23:28:57 | esEntomologoGenestita.etlAntNest() | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
+╭─💀─ SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. 
+╰──── LOG  ❱❱ 2026-01-27 23:37:52 | esAlimentoTipoDAO.mapResultSetToEntity | esIdAlimentoTipo
+╭─💀─ SHOW ❱❱ Error leyendo el archivo de datos de hormigas:  
+╰──── LOG  ❱❱ 2026-01-27 23:37:52 | esEntomologoGenestita.etlAntNest() | Ups! Error inesperado. Por favor, contacte al administrador del sistema.
